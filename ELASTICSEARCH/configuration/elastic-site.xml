@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- Elastic search  Configurations -->
+
+<configuration supports_adding_forbidden="true">
+    <!-- Configurations -->
+    <property>
+        <name>cluster_name</name>
+        <value>cc</value>
+        <description>Cluster name identifies your cluster</description>
+    </property>
+    <property>
+        <name>path_data</name>
+        <value>/var/lib/elasticsearch</value>
+        <description></description>
+    </property>
+    <property>
+        <name>path_log</name>
+        <value>/var/log/elasticsearch</value>
+        <description></description>
+    </property>
+    <property>
+        <name>nodes</name>
+        <value>["host1","host2"...]</value>
+        <description></description>
+    </property>
+    <property>
+        <name>http_port</name>
+        <value>9200</value>
+        <description></description>
+    </property>
+</configuration>

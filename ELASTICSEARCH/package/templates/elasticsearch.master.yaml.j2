@@ -1,0 +1,19 @@
+cluster.name: {{cluster_name}}
+
+node.name: {{hostname}}
+node.master: true
+node.data: false
+
+path.data: {{path_data}}
+path.logs: {{path_log}}
+
+bootstrap.memory_lock: false
+bootstrap.system_call_filter: false
+
+network.host: 0.0.0.0
+
+http.port: {{http_port}}
+discovery.seed_hosts: {{nodes}}
+
+http.cors.enabled: true
+http.cors.allow-origin: "*"

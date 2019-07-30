@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <!--service的名称，该名称必须保障在stack services中是唯一的，一定大写-->
+            <name>POSTGRES</name>
+            <!--添加服务时显示的服务名称，服务简介，服务版本-->
+            <displayName>PostgreSQL</displayName>
+            <comment>PostgreSQL是一个功能非常强大的、源代码开放的客户/服务器关系型数据库管理系统（RDBMS）。</comment>
+            <version>11.4</version>
+
+            <components>
+                <component>
+                    <!--组件的名称, 一定大写, 不能重复-->
+                    <name>POSTGRES_SERVER</name>
+                    <!-- 安装该组件时显示的名称-->
+                    <displayName>PostgreSQL</displayName>
+                    <!--该组件的类型：MASTER/SLAVE/CLIENT-->
+                    <category>MASTER</category>
+                    <!--允许/期待实例化数量-->
+                    <cardinality>1+</cardinality>
+                    <!--执行py脚本-->
+                    <commandScript>
+                        <!--该script的相对路径-->
+                        <script>scripts/postgres_server.py</script>
+                        <!--该script的类型，当前仅支持PYTHON-->
+                        <scriptType>PYTHON</scriptType>
+                        <!--该script的执行超时时间-->
+                        <timeout>1800</timeout>
+                    </commandScript>
+                </component>
+            </components>
+
+            <!--该service针对OS的特定package信息，该命令会在component实例中执行-->
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>any</osFamily>
+                    <packages>
+                        <package>
+                            <name>postgresql11</name>
+                        </package>
+                        <package>
+                            <name>postgresql11-server</name>
+                        </package>
+                        <package>
+                            <name>postgresql11-libs</name>
+                        </package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+
+            <!--该service所依赖的配置文件(被其他services拥有的config也要在该列表中指定)-->
+            <configuration-dependencies>
+                <config-type>postgres-env</config-type>
+            </configuration-dependencies>
+
+            <!--是否在rack变更后重启-->
+            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+
+        </service>
+    </services>
+</metainfo>

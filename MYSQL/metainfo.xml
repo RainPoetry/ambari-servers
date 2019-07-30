@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <!--service的名称，该名称必须保障在stack services中是唯一的，一定大写-->
+            <name>MYSQL</name>
+            <!--添加服务时显示的服务名称，服务简介，服务版本-->
+            <displayName>MySQL</displayName>
+            <comment>MySQL是一个关系型数据库管理系统。</comment>
+            <version>5.7</version>
+
+            <components>
+                <component>
+                    <!--组件的名称, 一定大写-->
+                    <name>MYSQL_SERVER_CC</name>
+                    <!-- 安装该组件时显示的名称-->
+                    <displayName>mysql</displayName>
+                    <!--该组件的类型：MASTER/SLAVE/CLIENT-->
+                    <category>MASTER</category>
+                    <!--允许/期待实例化数量-->
+                    <cardinality>1+</cardinality>
+                    <!--执行py脚本-->
+                    <commandScript>
+                        <!--该script的相对路径-->
+                        <script>scripts/mysql_server.py</script>
+                        <!--该script的类型，当前仅支持PYTHON-->
+                        <scriptType>PYTHON</scriptType>
+                        <!--该script的执行超时时间-->
+                        <timeout>1800</timeout>
+                    </commandScript>
+                </component>
+            </components>
+
+            <!--该service针对OS的特定package信息，该命令会在component实例中执行-->
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>any</osFamily>
+                    <packages>
+                        <package>
+                            <name>mysql-community-common.x86_64</name>
+                        </package>
+                        <package>
+                            <name>mysql-community-libs.x86_64</name>
+                        </package>
+                        <package>
+                            <name>mysql-community-client.x86_64</name>
+                        </package>
+                        <package>
+                            <name>mysql-community-server.x86_64</name>
+                        </package>
+                        <package>
+                            <name>mysql-connector-python.x86_64</name>
+                        </package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+
+            <!--该service所依赖的配置文件(被其他services拥有的config也要在该列表中指定)-->
+            <configuration-dependencies>
+                <config-type>mysql-env</config-type>
+            </configuration-dependencies>
+
+            <!--是否在rack变更后重启-->
+            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+
+        </service>
+    </services>
+</metainfo>
