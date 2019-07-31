@@ -140,7 +140,7 @@ Ambari 管理界面的所有显示的服务信息都是 Stack 目录解析出来
 - configuration 目录
 
   存放服务的配置文件，Ambari 会解析该目录下的配置文件放到前台中展示，让用户进行调整。
-  一般的数据格式：
+  该目录下文件的一般数据格式：
 ```
 <property>
 	<name>...</name>
@@ -314,6 +314,7 @@ Ambari 管理界面的所有显示的服务信息都是 Stack 目录解析出来
 
 - 安装部分
 
+  安装部分定义了服务的相关依赖，如果是 CentsOS7 操作系统，他会在通过 yum install -y 的形式完成相关依赖的安装，因此，一般我们都会自己搭建一个本地 yum 源，将服务依赖的 rpm 文件放入本地 yum 源中，然后在每一台节点配置该 yum 源，这样就可以做到整个 Ambari 集群内的服务依赖资源的共享
   ```
   <!--该service针对OS的特定package信息，该命令会在component实例中执行-->
   <osSpecifics>
@@ -336,6 +337,7 @@ Ambari 管理界面的所有显示的服务信息都是 Stack 目录解析出来
 
 - 配置文件部分
 
+  该配置文件对应的是 configuration 目录下的文件名，注意没有 .xml 后缀，需要了解的是该配置文件是整个 stack 版本下所有服务间共享的，也就是 A 服务定义的 a 配置文件，可以被 B 服务拿来直接使用，该配置文件的值就是你安装该服务时所定义的值
   ```
   <configuration-dependencies>
   	<config-type>postgres-env</config-type>
@@ -344,7 +346,7 @@ Ambari 管理界面的所有显示的服务信息都是 Stack 目录解析出来
 
 ### component生命周期
 
-自定义 service 主要实现就是对各个 component 生命周期的管理，分别对应于 install、status、start、stop4个接口的实现。如下图是 POSTGRES_SERVER 组件的生命周期实现。
+自定义 service 主要实现就是对各个 component 生命周期的管理，分别对应于 install、status、start、stop接口的实现。如下图是 POSTGRES_SERVER 组件的生命周期实现。
 
 ```
 class Server(Script):
@@ -417,7 +419,7 @@ if __name__ == "__main__":
 
 #### ambari-agent 易用的一些接口
 
-- format 	（用于动态字符串）
+- format 	（用于生成动态字符串）
 
   ```
   from resource_management.libraries.functions.format import format
