@@ -2,7 +2,7 @@
 
 ## 前言
 
-本文主要分为理论部分和实战部分，理论部分将会从源码的角度去引领读者思考自定义服务的实现原理，实战部分会以 PostgreSQL 服务作为例子出发，一步一步教读者如何将 PostgreSQL 服务集成 Ambari 平台中。此外，个人在  [GitHup](https://github.com/RainPoetry/ambari-servers) 上 实现了几个Ambari 自定义服务，感兴趣的读者可以自行参考。
+本文主要分为理论部分和实战部分，理论部分将会从源码的角度去引领读者思考自定义服务的实现原理，实战部分会以 PostgreSQL 服务作为例子出发，一步一步教读者如何将 PostgreSQL 服务集成到 Ambari 平台中。此外，个人在  [GitHup](https://github.com/RainPoetry/ambari-servers) 上 实现了几个Ambari 自定义服务，感兴趣的读者可以自行参考。
 
 ## 理论篇
 
@@ -127,13 +127,13 @@ Ambari 管理界面的所有显示的服务信息都是 Stack 目录解析出来
 
 ## 实战篇
 
-理论篇废话讲了很多，概括一下，Ambari 管理界面的启动类是 AmbariServer，以及 AmbariServer 在每次启动的时候，都会去扫描 stack 目录下的 metainfo.xml 文件，然后解析 metaInfo.xml 并将解析结果缓存到本地的 Map，以至于每一次 Ambari 获取 service 服务的时候都直接从缓存中读取。
+对前面的内容概括一下，Ambari 管理界面的启动类是 AmbariServer，以及 AmbariServer 在每次启动的时候，都会去扫描 stack 目录下的 metainfo.xml 文件，然后解析 metaInfo.xml 并将解析结果缓存到本地的 Map，以至于每一次 Ambari 获取 service 服务的时候都直接从缓存中读取。
 
 ### service目录结构
 
 要实现一个自定义 service，首先从它的目录结构开始了解，然后就是相关的各个文件的作用以及调用关系。
 
-![1564475133184](pic/1564475133184.png)
+![1564475133184](doc/pic/1564475133184.png)
 
 如上所示：
 
@@ -473,7 +473,7 @@ if __name__ == "__main__":
                     )
   ```
 #### Templates 模板语法
-Ambari-agent 模板这一块实现采用的损失 jinja2 , 我简单的罗列下常用的语法规则
+Ambari-agent 对于模板这一块的实现采用的是 jinja2 , 我简单的罗列下常用的语法规则
 - if 判断
   ```
   {% if message %}
@@ -489,7 +489,10 @@ Ambari-agent 模板这一块实现采用的损失 jinja2 , 我简单的罗列下
   ```
 #### 获取配置参数信息
 
-ambari-agent 提供 Script.get_config() 来获取所有的参数，参数是从 /var/lib/ambari-agent/data/command-xxx.json 文件中获取，其中索引号可以从你的最后的安装步骤中获取。如下图就是 command-1358.json，也就是说 Script.get_config()  指的就是 command-1358.json 内的数据![1564486268968](pic/1564486268968.png)
+ambari-agent 提供 Script.get_config() 来获取所有的参数，参数是从 /var/lib/ambari-agent/data/command-xxx.json 文件中获取，其中索引号可以从你的最后的安装步骤中获取。如下图就是 command-1358.json，也就是说 Script.get_config()  指的就是 command-1358.json 内的数据![1564486268968](doc/pic/1564486268968.png)
+
+#### 关于制作 RPM 文件
+这一块笔者强烈推荐使用 FPM 来生成 RPM 文件，安利一个 [FPM 教程地址](https://www.zyops.com/autodeploy-rpm/)
 
 ## 参考链接
 
