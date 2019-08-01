@@ -472,6 +472,21 @@ if __name__ == "__main__":
                     mode=0750						// 指定目录的权限 - rwx
                     )
   ```
+#### Templates 模板语法
+模板语法主要应用于 package/templates 下的 .j2 文件 ，这个语法是使用 jinja2 实现的，想深入了解的话，可自行度娘，这里我只简单介绍几个常用的语法。
+- if 判断
+  ```
+  {% if message %}
+  {{ message }}
+  {% endif %}
+  ```
+  
+- for in 循环
+  ```
+  {% for host in exclude_hosts %}
+  {{host}}
+  {% endfor %}
+  ```
 #### 获取配置参数信息
 
 ambari-agent 提供 Script.get_config() 来获取所有的参数，参数是从 /var/lib/ambari-agent/data/command-xxx.json 文件中获取，其中索引号可以从你的最后的安装步骤中获取。如下图就是 command-1358.json，也就是说 Script.get_config()  指的就是 command-1358.json 内的数据![1564486268968](pic/1564486268968.png)
