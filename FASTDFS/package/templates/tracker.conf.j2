@@ -1,0 +1,103 @@
+disabled=false
+
+bind_addr= 0.0.0.0
+
+port= {{track_port}}
+
+connect_timeout=30
+
+network_timeout=60
+
+base_path= {{track_data_path}}
+
+max_connections=512
+
+accept_threads=1
+
+work_threads=4
+
+min_buff_size = 8KB
+
+max_buff_size = 128KB
+
+store_lookup= {{track_store_lookup}}
+
+store_group=group2
+
+store_server=0
+
+store_path=0
+
+download_server=0
+
+reserved_storage_space = 10%
+
+log_level=info
+
+run_by_group=
+
+run_by_user=
+
+allow_hosts=*
+
+sync_log_buff_interval = 10
+
+check_active_interval = 120
+
+thread_stack_size = 64KB
+
+storage_ip_changed_auto_adjust = true
+
+storage_sync_file_max_delay = 86400
+
+storage_sync_file_max_time = 300
+
+use_trunk_file = false
+
+slot_min_size = 256
+
+slot_max_size = 16MB
+
+trunk_file_size = 64MB
+
+trunk_create_file_advance = false
+
+trunk_create_file_time_base = 02:00
+
+trunk_create_file_interval = 86400
+
+trunk_create_file_space_threshold = 20G
+
+trunk_init_check_occupying = false
+
+trunk_init_reload_from_binlog = false
+
+trunk_compress_binlog_min_interval = 0
+
+use_storage_id = false
+
+storage_ids_filename = storage_ids.conf
+
+id_type_in_filename = ip
+
+store_slave_file_use_link = false
+
+rotate_error_log = false
+
+error_log_rotate_time=00:00
+
+rotate_error_log_size = 0
+
+log_file_keep_days = 0
+
+use_connection_pool = false
+
+connection_pool_max_idle_time = 3600
+
+http.server_port= {{track_http_server_port}}
+
+http.check_alive_interval=30
+
+http.check_alive_type=tcp
+
+http.check_alive_uri=/status.html

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- Elastic search  Configurations -->
+
+<configuration supports_adding_forbidden="true">
+    <!-- Configurations -->
+    <property>
+        <name>track_data_path</name>
+        <value>/var/data/fdfs/track</value>
+        <description></description>
+    </property>
+    <property>
+        <name>track_port</name>
+        <value>22122</value>
+        <description></description>
+    </property>
+    <property>
+        <name>track_http_server_port</name>
+        <value>8080</value>
+        <description></description>
+    </property>
+    <property>
+        <name>track_store_lookup</name>
+        <value>0</value>
+        <description>采用轮询策略进行存储，0 轮询 1：始终定向到某个group 2：负载进行存储文件</description>
+    </property>
+</configuration>

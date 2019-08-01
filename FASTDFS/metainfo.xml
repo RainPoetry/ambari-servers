@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>FASTDFS</name>
+            <displayName>FastDFS</displayName>
+            <comment>FastDFS是一个开源的轻量级分布式文件系统。</comment>
+            <version>5.11</version>
+            <components>
+                <component>
+                    <name>FASTDFS_TRACKER</name>
+                    <displayName>FastDFS Tracker</displayName>
+                    <category>SLAVE</category>
+                    <cardinality>1+</cardinality>
+                    <commandScript>
+                        <script>scripts/fdfs_tracker.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>600</timeout>
+                    </commandScript>
+                </component>
+                <component>
+                    <name>FASTDFS_STORAGE</name>
+                    <displayName>FastDFS Storage</displayName>
+                    <category>SLAVE</category>
+                    <cardinality>1+</cardinality>
+                    <commandScript>
+                        <script>scripts/fdfs_storage.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>600</timeout>
+                    </commandScript>
+                </component>
+                <component>
+                    <name>FASTDFS_NGINX</name>
+                    <displayName>FastDFS Nginx</displayName>
+                    <category>MASTER</category>
+                    <cardinality>1+</cardinality>
+                    <commandScript>
+                        <script>scripts/fdfs_storage.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>600</timeout>
+                    </commandScript>
+                </component>
+            </components>
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>any</osFamily>
+                    <packages>
+                        <package>
+                            <name>fastdfs.x86_64</name>
+                        </package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+
+            <!--<commandScript>-->
+            <!--<script>scripts/service_check.py</script>-->
+            <!--<scriptType>PYTHON</scriptType>-->
+            <!--<timeout>300</timeout>-->
+            <!--</commandScript>-->
+
+            <configuration-dependencies>
+                <config-type>fdfs-storage-env</config-type>
+                <config-type>fdfs-tracker-env</config-type>
+            </configuration-dependencies>
+
+
+            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+        </service>
+    </services>
+</metainfo>
