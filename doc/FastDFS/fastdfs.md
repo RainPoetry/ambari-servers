@@ -26,7 +26,7 @@ gem sources --add https://gems.ruby-china.com/ --remove http://rubygems.org/
 gem install json -v 1.8.3
 gem install fpm -v 1.3.3
 
-# 上面的2步安装仅适合CentOS6系统，CentOS7系统一步搞定，即gem install fpm
+# 上面的2步安装仅适合CentOS6系统，CentOS7系统一步搞定，即 gem install fpm
 ```
 
 #### 制作 FastDFS RPM 文件
