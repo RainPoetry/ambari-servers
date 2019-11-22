@@ -26,7 +26,7 @@
     </property>
     <property>
         <name>storage_http_server_port</name>
-        <value>8888</value>
+        <value>7777</value>
         <description>Cluster name identifies your cluster</description>
     </property>
 </configuration>

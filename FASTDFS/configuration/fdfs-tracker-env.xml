@@ -16,7 +16,7 @@
     </property>
     <property>
         <name>track_http_server_port</name>
-        <value>8080</value>
+        <value>7077</value>
         <description></description>
     </property>
     <property>
