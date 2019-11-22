@@ -30,7 +30,7 @@
                         <timeout>600</timeout>
                     </commandScript>
                 </component>
-                <component>
+               <!-- <component>
                     <name>FASTDFS_NGINX</name>
                     <displayName>FastDFS Nginx</displayName>
                     <category>MASTER</category>
@@ -40,7 +40,7 @@
                         <scriptType>PYTHON</scriptType>
                         <timeout>600</timeout>
                     </commandScript>
-                </component>
+                </component>-->
             </components>
             <osSpecifics>
                 <osSpecific>
